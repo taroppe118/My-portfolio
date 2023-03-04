@@ -1,0 +1,38 @@
+<main>
+  
+  <p id="notice"></p>
+  
+  <% if @place.errors.any? %>
+  <%= @place.errors.count %>件のerrorsが発生しました
+  <% @place.errors.full_messages.each do |message| %>
+    <%= message %>
+  <% end %>
+<% end %>
+
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-12 col-md-8 col-lg-5 px-5 px-sm-0 mx-auto">
+        <h1>Editing place</h1>
+        <%= form_with model:@place, local:true do |f| %>
+          <div class="form-group">
+            <label for="place_title">Title</label>
+            <%= f.text_field :title, id:"place_title", class:["form-control","place_title"] %>
+          </div>
+          <div class="form-group">
+            <label for="place_opinion">Opinion</label>
+            <%= f.text_area :body, id:"place_body", class:["form-control", "place_body"] %>
+          </div>
+          <div class="form-group">
+            <%= f.submit "Update place", class:["btn", "btn-success"] %>
+          </div>
+        <% end %>
+        
+        <%= link_to "Show", place_path(@place.id) %>
+        |
+        <%= link_to "Back", places_path %>
+      </div>
+    </div>
+  </div>
+  
+  
+</main>
